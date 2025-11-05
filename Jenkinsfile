@@ -8,14 +8,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/AlexanderYanuchkovskiy/IO_simp.git'
+                git branch: 'main', url: 'https://github.com/AlexanderYanuchkovskiy/io_simp.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('keply186/IO_simp:latest')
+                    docker.build('keply186/io_simp:latest')
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-login') {
-                        docker.image('keply186/IO_simp:latest').push()
+                        docker.image('keply186/io_simp:latest').push()
                     }
                 }
             }
